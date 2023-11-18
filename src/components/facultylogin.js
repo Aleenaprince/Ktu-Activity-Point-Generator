@@ -1,9 +1,8 @@
-
 import React from 'react';
-import './studentlogin.css';
+import './facultylogin.css';
 import mec from '../images/mec.jpg'
 
-export default function studentlogin ()
+export default function facultylogin()
 {
   return (
     <section>
@@ -12,7 +11,7 @@ export default function studentlogin ()
       </div>
       <div className="contentBx">
         <div className="formBx">
-          <h2>Login for student</h2>
+          <h2>Login for faculty</h2>
           <form>
             <div className="inputBx">
               <span>Username</span>
