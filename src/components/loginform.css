@@ -81,9 +81,6 @@
     padding: 5px;
    
 }*/
-
-    
-
 .Main{
     position: absolute;
     min-height: 100vh;
@@ -91,8 +88,7 @@
     background-image: url("D:\ktupoints\src\images\mec 1.png");
     background-repeat: no-repeat;
     background-position:center;
-    background-size: cover; 
-
+    background-size: cover;
 }
 .hero-cont{
     display: flex;
@@ -112,7 +108,6 @@
 
     
 }
-
 .hero-left h1{
     font-family: poppins;
     font-size: 50px;
@@ -142,15 +137,3 @@
     border: 2px solid #ffffff;
     color: #ffffff;
 }
-
-
-@media (max-width: 300px) {
-    .hero-cont{
-        display: flex;
-        justify-content: space-around;
-        gap: 30px;
-        margin: 320px 180px;
-        align-items: center;
-        height: 100%;
-    }
-  }

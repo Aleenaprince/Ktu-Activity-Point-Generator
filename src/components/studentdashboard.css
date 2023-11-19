@@ -1,0 +1,70 @@
+/* styles.css */
+/* styles.css */
+/* styles.css */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .dashboard-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .left-div {
+    width: 30%;
+    padding: 50px;
+    border: 1px solid #0C2340;
+    background-color: #0C2340;
+    color: #fff;
+    height: 100%;
+    box-sizing: border-box; /* Include padding and border in the total height */
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #AE9142;
+    display: inline-block;
+    letter-spacing: 1px;
+  }
+  
+  .right-div {
+    flex: 1;
+    padding: 50px;
+    border: 1px solid #AE9142;
+    background-color: #AE9142;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box; /* Include padding and border in the total height */
+    color: #000000;
+    font-weight: 500;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #AE9142;
+    display: inline-block;
+    letter-spacing: 1px;
+  }
+  
+  
+  .total-points-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color:#0C2340; /* Keeping a contrasting color for the circle */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .certificate-upload {
+    margin-top: 20px;
+  }
+  
