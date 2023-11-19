@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './facultylogin.css';
-import mec from '../images/mec 2.png'
+import mec from '../images/mec2.png'
 
 import { supabase } from "../client";
 import {useNavigate} from 'react-router-dom';
