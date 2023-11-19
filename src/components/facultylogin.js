@@ -1,30 +1,36 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './facultylogin.css';
 import mec from '../images/mec 2.png'
+
 import { supabase } from "../client";
+import {useNavigate} from 'react-router-dom';
 
-export default function Facultylogin()
-{
 
+export default function Facultylogin() {
+
+  let navigate =useNavigate()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
-async function handleSubmit(e){
-try{
-  e.preventDefault()
-const { data, error } = await supabase.auth.signInWithPassword({
-  email,
-  password,
-})
-} catch(error) {
-  alert(error)
-}
-}
+
+  async function handleSubmit(e) {
+    try {
+      e.preventDefault()
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+      if (error) throw error
+      console.log(data)
+      navigate('/studentdashboard')
+    } catch (error) {
+      alert(error)
+    }
+  }
 
   return (
     <section>
       <div className="imgBx">
-        <img src={mec} alt="Background" /><img/>
+        <img src={mec} alt="Background" /><img />
       </div>
       <div className="contentBx">
         <div className="formBx">
