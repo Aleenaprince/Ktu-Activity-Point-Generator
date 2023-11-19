@@ -1,3 +1,4 @@
+import { supabase } from "./client.js";
 import Loginform from "./components/loginform.js"
 import Studentlogin from "./components/studentlogin.js"
 import Facultylogin from "./components/facultylogin.js"
