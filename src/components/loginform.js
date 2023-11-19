@@ -32,7 +32,7 @@ export default function LoginForm()
             <div className="hero-cont">
                 <div className="hero-left">
                     <h1>KTU Activity Point Generator</h1><br/>
-                    <h3>Calculate your Activity Points here in no time..</h3><br/><br/>
+                    <h3>Calculate your Activity Points here in no time..</h3><br/><br/><br></br>
                     <a href="/loginstudent">Login for Students</a>
                     <a href="/loginfaculty">Login for Faculty</a>
                 </div>

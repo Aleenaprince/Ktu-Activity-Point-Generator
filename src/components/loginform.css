@@ -85,12 +85,16 @@
     position: absolute;
     min-height: 100vh;
     background-color:#0C2340;
+    background-image: url("D:\ktupoints\src\images\mec 1.png");
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
 }
 .hero-cont{
     display: flex;
     justify-content: space-around;
     gap: 30px;
-    margin: 100px 80px;
+    margin: 120px 80px;
     align-items: center;
     height: 100%;
 }

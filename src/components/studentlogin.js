@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react';
 import './studentlogin.css';
-import mec from '../images/mec.jpg'
+import mec from '../images/mec 2.png'
 import { supabase } from "../client";
 import {useNavigate} from 'react-router-dom';
 
@@ -54,12 +54,7 @@ export default function Studentlogin ()
               <p>Don't have an account? <a href="#">Sign up</a></p>
             </div>
           </form>
-          <h3>Login with social media</h3>
-          <ul className="sci">
-            <li><img src="https://cdn-icons-png.flaticon.com/512/59/59439.png" alt="Icon 1" width="40" height="40" /></li>
-            <li><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Icon 2" width="40" height="40" /></li>
-            <li><img src="https://cdn-icons-png.flaticon.com/512/87/87390.png" alt="Icon 3" width="40" height="40" /></li>
-          </ul>
+          
         </div>
       </div>
     </section>
