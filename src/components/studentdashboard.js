@@ -134,7 +134,7 @@ fetchUserID();
       .insert([
         { 
         StudentID: studentDetails.reg,
-        CategID: 'N1',
+        CategID: 'M1',
         Status: 'Pending', },
       ])
       .select();
