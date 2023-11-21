@@ -1,0 +1,92 @@
+/* Add your global styles here */
+*{
+    background-color: #0C2340;
+}
+
+section.tables {
+    margin-top: 20px;
+  }
+  
+  .table__wrapper {
+    width: 85%;
+    margin: 0 auto; /* Center the table */
+  }
+  
+  table.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 13px;
+    text-align: left;
+    color:#ffffff;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  .checkbox-toggle {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .checkbox-toggle input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .checkbox-toggle label {
+    position: relative;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+  
+  .checkbox-toggle label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #000;
+    background-color: #fff;
+  }
+  
+  .checkbox-toggle input:checked + label:before {
+    background-color: #00f; /* Change the background color when checked */
+  }
+  
+  .badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #fff;
+  }
+  .table__body input[type="checkbox"] {
+    transform: scale(1.5); /* Adjust the scale factor to make it bigger */
+    margin-right: 5px; /* Add some spacing between the checkbox and text */
+    margin-left: 20px;
+  }
+  
+  .status-primary {
+    background-color: #5cb85c;
+  }
+  
+  .status-error {
+    background-color: #d9534f;
+  }
+  
+  .status-success {
+    background-color: #5bc0de;
+  }
+  
+ 
+  
+  /* Add more specific styles as needed */
+  
