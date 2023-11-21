@@ -1,6 +1,6 @@
 import React from 'react';
 import './facultydashboard.css';
-const facultydashboard = () => {
+const Facultydashboard = () => {
   return (
     <section className="tables">
       
@@ -99,4 +99,4 @@ const facultydashboard = () => {
   );
 };
 
-export default facultydashboard;
+export default Facultydashboard;
