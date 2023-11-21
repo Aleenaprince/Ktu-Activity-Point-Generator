@@ -1,92 +1,76 @@
-/* Add your global styles here */
-*{
-    background-color: #0C2340;
+/* facultydashboard.css */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  
 }
 
-section.tables {
-    margin-top: 20px;
-  }
+
   
-  .table__wrapper {
-    width: 85%;
-    margin: 0 auto; /* Center the table */
-  }
-  
-  table.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+  .faculty-info {
+    width: 20%; /* Adjust the width as needed */
+    padding : 40px;
+    background-color: #f0f0f0;
+    margin-bottom: 20px;
+    
   }
   
   
-  th, td {
-    border: 1px solid #ddd;
-    padding: 13px;
-    text-align: left;
-    color:#ffffff;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  .checkbox-toggle {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .checkbox-toggle input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  .checkbox-toggle label {
-    position: relative;
-    cursor: pointer;
-    padding: 5px 10px;
-  }
-  
-  .checkbox-toggle label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 15px;
-    height: 15px;
-    border: 2px solid #000;
-    background-color: #fff;
-  }
-  
-  .checkbox-toggle input:checked + label:before {
-    background-color: #00f; /* Change the background color when checked */
-  }
-  
-  .badge {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 3px;
-    color: #fff;
-  }
-  .table__body input[type="checkbox"] {
-    transform: scale(1.5); /* Adjust the scale factor to make it bigger */
-    margin-right: 5px; /* Add some spacing between the checkbox and text */
-    margin-left: 20px;
-  }
-  
-  .status-primary {
-    background-color: #5cb85c;
-  }
-  
-  .status-error {
-    background-color: #d9534f;
-  }
-  
-  .status-success {
-    background-color: #5bc0de;
-  }
-  
- 
-  
-  /* Add more specific styles as needed */
-  
+.tables {
+  width: 100%;
+  margin: auto;
+  height: 100%;
+  margin-right: 0%;
+}
+
+.table__wrapper {
+  overflow-x: auto;
+  height: 100%;
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  height: 100%;
+}
+
+.table__header {
+  background-color: #0C2340;
+  color: white;
+}
+
+.table__header td {
+  padding: 12px;
+  text-align: left;
+}
+
+.table__body tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table__body td {
+  padding: 12px;
+}
+
+/* Style for the "View" button */
+.badge {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.badge:hover {
+  background-color: #0056b3;
+}
+
+.faculty-info img{
+  width: 100%;
+  border-radius: 20px;
+  margin-top: 50%;
+}
