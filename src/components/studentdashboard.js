@@ -1,20 +1,114 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './studentdashboard.css';
+import { supabase } from "../client";
 
-const StudentDashboard = () => {
-  // State for student details
+const StudentDashboard = ({token}) => {
+
+
+/*const [userDetails, setUserDetails] = useState({
+  name:'',
+  className:'',
+  dob:'',
+});  */
   const [studentDetails, setStudentDetails] = useState({
-    name: 'John Doe',
-    className: 'CS5B',
+    name: '',
+    className: '',
     dob: '01-01-2000',
   });
 
-  // State for activity points
   const [activityPoints, setActivityPoints] = useState({
-    totalPoints: 75,
-    remainingPoints: 25,
+    totalPoints: 0,
+    remainingPoints: 0,
   });
 
+
+  //const [ID, setID] = useState(null);
+  const fetchUserID = async () => {
+    try{
+    const { data: { user } } = await supabase.auth.getUser();
+    if(user){
+    console.log('user:',user);
+    console.log('user.id:',user.id);
+    //setID(user.id);  
+    //console.log('id:',ID);
+
+    let { data, error } = await supabase
+    .from('Student')
+    .select("*")
+    .eq('U_ID', user.id);
+
+  if (error) {
+    console.error('Error fetching user details:', error.message);
+    return;
+  }
+  if(data){
+    console.log('data retreived',data);
+  setStudentDetails(prevData => ({ 
+    ...prevData,
+    name:data[0].Name,
+    className:data[0].Class,
+    dob:data[0].DOB,
+  }));
+   setActivityPoints(prevData => ({ 
+    ...prevData,
+    totalPoints: data[0].Tot_Pts,
+    remainingPoints: data[0].Rem_Pts,
+  }));
+  console.log('studentdetails set from data:',studentDetails);
+  console.log('activitypointdetails set from data:',activityPoints);
+}
+    }
+  } 
+  catch (error){
+    console.error(error.message);
+  }
+  
+  }
+fetchUserID();
+
+    
+
+
+  
+  /*async function fetchData(ID){
+
+    let { data, error } = await supabase
+      .from('Student')
+      .select("*")
+      .eq('U_ID', ID);
+
+    if (error) {
+      console.error('Error fetching user details:', error.message);
+      return;
+    }
+    if(data){
+    setUserDetails(data);
+    console.log('userdetails:',userDetails);
+    }
+ 
+  } 
+  useEffect(() =>{
+    
+    fetchUserID();
+    fetchData(ID);
+  }, []);  */
+
+
+
+
+
+
+
+
+ /* setStudentDetails({
+    name: userDetails.Name,
+    className: userDetails.Class,
+    dob: userDetails.DOB
+  });
+/*
+ 
+
+*/
   // State for uploaded certificates
   const [certificate, setCertificate] = useState(null);
 

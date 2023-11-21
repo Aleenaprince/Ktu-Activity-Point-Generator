@@ -5,7 +5,7 @@ import { supabase } from "../client";
 import {useNavigate} from 'react-router-dom';
 
 
-export default function Facultylogin() {
+export default function Facultylogin({setToken}) {
 
   let navigate =useNavigate()
   const [email, setEmail] = useState('');
@@ -20,6 +20,7 @@ export default function Facultylogin() {
       })
       if (error) throw error
       console.log(data)
+      setToken(data)
       navigate('/studentdashboard')
     } catch (error) {
       alert(error)
