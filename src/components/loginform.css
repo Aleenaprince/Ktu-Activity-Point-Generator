@@ -81,10 +81,13 @@
     padding: 5px;
    
 }*/
+
+
 .Main{
     position: absolute;
     min-height: 100vh;
     background-color:#0C2340;
+    background-image: url("/src/images/mec1.png");
     background-repeat: no-repeat;
     background-position:center;
     background-size: cover;

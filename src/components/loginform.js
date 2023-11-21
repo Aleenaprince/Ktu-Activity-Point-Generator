@@ -24,11 +24,13 @@ export default LoginForm
 */
 import React from "react";
 import mec from '../images/mec.jpg'
+
 import "./loginform.css"
 export default function LoginForm()
 {
-    return(
+    return(  
         <div className="Main">
+          
             <div className="hero-cont">
                 <div className="hero-left">
                     <h1>KTU Activity Point Generator</h1><br/>
