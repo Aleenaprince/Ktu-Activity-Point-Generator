@@ -22,7 +22,7 @@ export default function Facultylogin({setToken}) {
       if (error) throw error
       console.log(data)
       setToken(data)
-      navigate('/studentdashboard')
+      navigate('/facultydashboard')
     } catch (error) {
       alert(error)
     }

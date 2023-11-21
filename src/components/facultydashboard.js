@@ -1,7 +1,9 @@
 import React from 'react';
 import './facultydashboard.css';
+import { supabase } from "../client";
 import profile from '../images/profile.png'
-const Facultydashboard = () => {
+
+const Facultydashboard = ({token}) => {
   return (
     
     <section className="tables">
