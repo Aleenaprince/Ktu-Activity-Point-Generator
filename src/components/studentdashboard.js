@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './studentdashboard.css';
 import { supabase } from "../client";
+import {v4 as uuidv4} from 'uuid';
 import { Card, CardHeader, CardBody, CardFooter, SimpleGrid, Heading, Text, Button,CircularProgress,Input, CircularProgressLabe } from '@chakra-ui/react'
-import profile from '../images/profile.png'
+import profile from '../images/profiles.png'
 
 
 const StudentDashboard = ({token}) => {
@@ -17,6 +18,9 @@ const StudentDashboard = ({token}) => {
     regno:'',
     name: '',
     className: '',
+    dob: '',
+    branch: '',
+    reg: '',
     semester:'',
   });
 
@@ -51,15 +55,15 @@ const StudentDashboard = ({token}) => {
 
 
 
-  //const [ID, setID] = useState(null);
+  const [userID, setUserID] = useState('');
   const fetchUserID = async () => {
     try{
     const { data: { user } } = await supabase.auth.getUser();
     if(user){
     console.log('user:',user);
     console.log('user.id:',user.id);
-    //setID(user.id);  
-    //console.log('id:',ID);
+    setUserID(user.id);  
+    //console.log('Userid:',userID);
 
     let { data, error } = await supabase
     .from('Student')
@@ -77,7 +81,10 @@ const StudentDashboard = ({token}) => {
     regno:data[0].RegisterNo,
     name:data[0].Name,
     className:data[0].Class,
-    senester:data[0].Semester,
+    dob:data[0].DOB,
+    semester:data[0].Semester,
+    branch: data[0].Branch,
+    reg: data[0].RegNo,
   }));
    setActivityPoints(prevData => ({ 
     ...prevData,
@@ -143,9 +150,40 @@ fetchUserID();
   const [certificate, setCertificate] = useState(null);
 
   // Function to handle certificate upload
-  const handleCertificateUpload = (event) => {
+  const handleCertificateUpload = async(event) => {
+    try{
     const uploadedCertificate = event.target.files[0];
     setCertificate(uploadedCertificate);
+    console.log('Certificate uploaded',uploadedCertificate);
+    const { data:storagedata, error:storageerror } = await supabase
+      .storage
+      .from('certificates')
+      .upload(userID+"/"+uuidv4(), uploadedCertificate);
+
+    
+    const { data:insertdata, error:inserterror } = await supabase
+      .from('Certificate')
+      .insert([
+        { 
+        StudentID: studentDetails.reg,
+        CategID: 'M1',
+        Status: 'Pending', },
+      ])
+      .select();
+
+      if (storageerror) {
+        console.error('Error uploading certificate to storage:', storageerror.message);
+      }
+  
+      if (inserterror) {
+        console.error('Error inserting data into Certificate table:', inserterror.message);
+      }
+      console.log('Upload to storage result:', storagedata);
+      console.log('Insert into Certificate table result:', insertdata);
+    
+    } catch (error) {
+      console.error('Error handling certificate upload:', error.message);
+    }
   };
 
 
@@ -189,7 +227,7 @@ fetchUserID();
           <input
             type="file"
             accept="application/pdf"
-            onChange={handleCertificateUpload}
+            onChange={(e) => handleCertificateUpload(e)}
           />
         </div>
       
@@ -231,7 +269,12 @@ fetchUserID();
               {certificate.name}
             </a>
             <br />
-           
+            {/* <embed
+              src={URL.createObjectURL(certificate)}
+              type="application/pdf"
+              width="100%"
+              height="600px"
+            /> */}
           </div>
         )}
     </CardBody>
