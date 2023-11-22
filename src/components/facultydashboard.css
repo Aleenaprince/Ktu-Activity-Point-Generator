@@ -4,25 +4,25 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  
 }
 
+.flex-container {
+  display: flex;
+  height: 100vh; /* Set height to 100% of the viewport height */
+}
 
-  
-  .faculty-info {
-    width: 20%; /* Adjust the width as needed */
-    padding : 40px;
-    background-color: #f0f0f0;
-    margin-bottom: 20px;
-    
-  }
-  
-  
+.faculty-info {
+  width: 20%;
+  height: 100%;
+  padding: 20px; /* Adjusted padding */
+  background-color: #e0e0e0; /* Adjusted background color */
+}
 .tables {
   width: 100%;
+  height: 100%; /* Updated to 100% height */
   margin: auto;
-  height: 100%;
   margin-right: 0%;
+  display: flex; /* Assuming you want a flex container */
 }
 
 .table__wrapper {
@@ -34,7 +34,6 @@ body, html {
 .table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
   height: 100%;
 }
 
@@ -56,7 +55,6 @@ body, html {
   padding: 12px;
 }
 
-/* Style for the "View" button */
 .badge {
   padding: 8px 12px;
   background-color: #007bff;
@@ -69,8 +67,14 @@ body, html {
   background-color: #0056b3;
 }
 
-.faculty-info img{
+.faculty-info img {
   width: 100%;
   border-radius: 20px;
   margin-top: 50%;
+}
+
+.faculty-info p {
+  margin: 10px 0;
+  font-size: 16px; /* Adjusted font size */
+  color: #333; /* Adjusted text color */
 }
