@@ -227,31 +227,44 @@ fetchUserID();
     
     const [selectedOptions, setSelectedOptions] = useState({ dropdown1: '', dropdown2: '' });
     
-  
-    
+    const handleLogout = async () => {
+      try {
+        await supabase.auth.signOut();
+        // Redirect to the login page or any other desired page after logout
+        navigate('/');
+      } catch (error) {
+        console.error('Error logging out:', error.message);
+      }
+    };
+
+
 
 
   return (
     <div className="dashboard-container">
-      <div className="sidebar left" >
+      <div className="sidebar left" width="50%" >
        {/* <Heading size='md'>Student Details</Heading>/*}
         {/* Add content or links for the left sidebar as needed */}
         <div classname="image">
         <img src={profile} alt=""></img>
         </div>
        
-  <CText fontSize="lg" fontFamily="Open Sans">
+  <CText fontSize="lg" fontFamily="Arial">
     Name: {studentDetails.name}
   </CText>
-  <CText fontSize="lg" fontFamily="Open Sans">
+  <CText fontSize="lg" fontFamily="Arial">
     Register Number: {studentDetails.reg}
   </CText>
-  <CText fontSize="lg" fontFamily="Open Sans">
+  <CText fontSize="lg" fontFamily="Arial">
     Class: {studentDetails.className}
   </CText>
-  <CText fontSize="lg" fontFamily="Open Sans">
+  <CText fontSize="lg" fontFamily="Arial">
     Semester: {studentDetails.semester}
   </CText>
+  <Button colorScheme="red" onClick={handleLogout} mt="4" // margin-top
+        size="lg">
+        Logout
+      </Button>
       </div>
       <div className="main-content">
        
@@ -342,6 +355,7 @@ fetchUserID();
 
 </SimpleGrid>
       </div>
+      
     </div>
     
   );
