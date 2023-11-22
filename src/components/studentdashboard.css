@@ -11,8 +11,11 @@
   flex: 1;
   height: 100vh;
   padding: 20px;
-  border:  3px  dotted #cdc847;
-  background-color: #f6f3ebfe;
+  background-color: rgb(255, 255, 255);
+  color: #000066;
+ {/* border:  3px  dotted #cdc847;*/}
+ 
+ 
   
 }
 .left img {
@@ -22,6 +25,7 @@
   margin-left: 10vh;
   width: 25vh;
   height: 25vh;
+  margin-left: 10%;
 }
 
 .left h3 {
@@ -55,4 +59,7 @@
   border: 1px solid #ddd;
   background-color: #fff;
 }
+
+
+
 

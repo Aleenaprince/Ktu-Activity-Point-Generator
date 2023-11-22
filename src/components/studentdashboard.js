@@ -2,10 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import './studentdashboard.css';
 import { supabase } from "../client";
 import {v4 as uuidv4} from 'uuid';
-import { Card, CardHeader, CardBody, CardFooter, SimpleGrid, Heading, Text, Button,CircularProgress,Input, CircularProgressLabe } from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, CardFooter,Select , Box,Alert, SimpleGrid, Heading, Text, Button,CircularProgress,Input, CircularProgressLabe } from '@chakra-ui/react'
 import profile from '../images/profiles.png'
 import {useNavigate} from 'react-router-dom';
-import { DeleteIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
+import { DeleteIcon, AddIcon, WarningIcon  } from '@chakra-ui/icons'
+import { Text as CText, Heading as CHeading } from '@chakra-ui/react';
 
 
 const StudentDashboard = ({token}) => {
@@ -34,6 +35,43 @@ const StudentDashboard = ({token}) => {
     totalPoints: 0,
     remainingPoints: 0,
   });
+
+  const [fileCount, setFileCount] = useState(0);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+  
+
+  const handleUpload = async(CAT,SUBCAT) => {
+    if (activityPoints.totalPoints < 100) {
+      // Check if activity points are less than 100
+      setFileCount(fileCount + 1);
+      // Increase activity points
+      setSelectedFile(null); // Clear selected file
+      setErrorMessage(''); // Clear any previous error message
+      const { data:insertdata, error:inserterror } = await supabase
+      .from('Certificate')
+      .insert([
+        { 
+        StudentID: studentDetails.reg,
+        CategID: 'M1',
+        Status: 'Pending', },
+      ])
+      .select();
+      if (inserterror) {
+        console.error('Error inserting data into Certificate table:', inserterror.message);
+      }
+
+
+    } else {
+      setErrorMessage('Cannot add more files. Activity points exceed 100.');
+    }
+  };
+ 
 
   /*useEffect(() => {
     // Sample data for the pie chart
@@ -136,13 +174,6 @@ fetchUserID();
     fetchData(ID);
   }, []);  */
 
-
-
-
-
-
-
-
  /* setStudentDetails({
     name: userDetails.Name,
     className: userDetails.Class,
@@ -167,60 +198,75 @@ fetchUserID();
       .upload(userID+"/"+uuidv4(), uploadedCertificate);
 
     
-    const { data:insertdata, error:inserterror } = await supabase
-      .from('Certificate')
-      .insert([
-        { 
-        StudentID: studentDetails.reg,
-        Name: uploadedCertificate.name,
-        CategID: 'M1',
-        Status: 'Pending', },
-      ])
-      .select();
+    // const { data:insertdata, error:inserterror } = await supabase
+    //   .from('Certificate')
+    //   .insert([
+    //     { 
+    //     StudentID: studentDetails.reg,
+    //     CategID: 'M1',
+    //     Status: 'Pending', },
+    //   ])
+    //   .select();
 
       if (storageerror) {
         console.error('Error uploading certificate to storage:', storageerror.message);
       }
   
-      if (inserterror) {
-        console.error('Error inserting data into Certificate table:', inserterror.message);
-      }
+      // if (inserterror) {
+      //   console.error('Error inserting data into Certificate table:', inserterror.message);
+      // }
       console.log('Upload to storage result:', storagedata);
-      console.log('Insert into Certificate table result:', insertdata);
+      // console.log('Insert into Certificate table result:', insertdata);
     
     } catch (error) {
       console.error('Error handling certificate upload:', error.message);
     }
+
   };
 
-
-
+  
+    
+    const handleDropdownChange = (dropdown, value) => {
+      setSelectedOptions((prevOptions) => ({ ...prevOptions, [dropdown]: value }));
+    };
+    const dropdownOptions1 = ['-select-','NSS','Sports','Student Proffesional society','MOOC Course','Industrial Visit','Industrial Training/ Internship'];
+    const dropdownOptions2 = ['-select-','None','College Event','Zonal Event','State/University Event','National Event','International Event','Sub Coordinator','Core Coordinator','Volunteer'];
+    
+    const [selectedOptions, setSelectedOptions] = useState({ dropdown1: '', dropdown2: '' });
+    
+  
 
 
 
 
   return (
     <div className="dashboard-container">
-      <div className="sidebar left">
-        <Heading size='md'>Student Details</Heading>
+      <div className="sidebar left" >
+       {/* <Heading size='md'>Student Details</Heading>/*}
         {/* Add content or links for the left sidebar as needed */}
         <div classname="image">
         <img src={profile} alt=""></img>
         </div>
-        <p>Name: {studentDetails.name}</p>
-        <p>
-          Register Number: {studentDetails.reg}
-        </p>
-        
-        <p>Class: {studentDetails.className}</p>
-        <p>Semester: {studentDetails.semester}</p>
+       
+  <CText fontSize="lg" fontFamily="Open Sans">
+    Name: {studentDetails.name}
+  </CText>
+  <CText fontSize="lg" fontFamily="Open Sans">
+    Register Number: {studentDetails.reg}
+  </CText>
+  <CText fontSize="lg" fontFamily="Open Sans">
+    Class: {studentDetails.className}
+  </CText>
+  <CText fontSize="lg" fontFamily="Open Sans">
+    Semester: {studentDetails.semester}
+  </CText>
       </div>
       <div className="main-content">
-        <h1>Student Dashboard</h1>
+       
 
       
         <SimpleGrid spacing={8} templateColumns='repeat(auto-fill, minmax(500px, 2fr))'>
-  <Card bgGradient='linear(yellow.100 10%, orange.100 25%, yellow.100 70%)' >
+  <Card  >
   
   
     <CardHeader>
@@ -230,13 +276,51 @@ fetchUserID();
     
         {/* Add functionality for uploading certificates */}
         <div className="certificate-upload">
-      
-          <input
+        <input
             type="file"
             accept="application/pdf"
             onChange={(e) => handleCertificateUpload(e)}
           />
+
+          
+
+          {errorMessage && (
+            <Alert status="error" mb="4">
+              <WarningIcon />
+              {errorMessage}
+            </Alert>
+          )}
+          
+          <Select  marginTop="15px" onChange={(e) => handleDropdownChange('dropdown1', e.target.value)} value={selectedOptions.dropdown1}>
+          {dropdownOptions1.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+         </Select>
+         <Select onChange={(e) => handleDropdownChange('dropdown2', e.target.value)} value={selectedOptions.dropdown2} mt={4}>
+        {dropdownOptions2.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </Select>
+        
+    
+        <Button colorScheme="orange" marginTop="10PX" onClick={()=> handleUpload(selectedOptions.dropdown1,selectedOptions.dropdown2)} isDisabled={activityPoints >= 100}>
+          Upload Certificate
+        </Button>
+  
+        {fileCount > 0 && (
+          <Box mt="4">
+            <Text> Certificate uploaded successfully.</Text>
+          </Box>
+       
+        )}
+     
+     
         </div>
+        
       
     </CardBody>
     <CardFooter>
