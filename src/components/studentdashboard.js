@@ -234,7 +234,15 @@ fetchUserID();
     
     const [selectedOptions, setSelectedOptions] = useState({ dropdown1: '', dropdown2: '' });
     
-  
+    const handleLogout = async () => {
+      try {
+        await supabase.auth.signOut();
+        // Redirect to the login page or any other desired page after logout
+        navigate('/');
+      } catch (error) {
+        console.error('Error logging out:', error.message);
+      }
+    };
 
 
 
@@ -260,6 +268,10 @@ fetchUserID();
   <CText fontSize="lg" fontFamily="Open Sans">
     Semester: {studentDetails.semester}
   </CText>
+  <Button colorScheme="red" onClick={handleLogout} mt="4" // margin-top
+        size="lg">
+        Logout
+      </Button>
       </div>
       <div className="main-content">
        
@@ -392,6 +404,7 @@ fetchUserID();
 
 </SimpleGrid>
       </div>
+      
     </div>
     
   );

@@ -3,6 +3,7 @@ import './facultydashboard.css';
 import { supabase } from "../client";
 import profile from '../images/profile.png'
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@chakra-ui/react';
 
 
 const Facultydashboard = ({token}) => {
@@ -63,6 +64,15 @@ const Facultydashboard = ({token}) => {
   }
 fetchUserID();
 
+const handleLogout = async () => {
+  try {
+    await supabase.auth.signOut();
+    // Redirect to the login page or any other desired page after logout
+    navigate('/');
+  } catch (error) {
+    console.error('Error logging out:', error.message);
+  }
+};
 
 
 
@@ -80,7 +90,12 @@ fetchUserID();
         
         </div>
         {/* Add more faculty information as needed */}
+        <Button colorScheme="red" onClick={handleLogout} mt="4" // margin-top
+        size="lg">
+        Logout
+      </Button>
       </div>
+      
       <div className="table__wrapper">
         
         
@@ -201,6 +216,7 @@ fetchUserID();
           </tbody>
         </table>
       </div>
+      
     </section>
   );
 };
