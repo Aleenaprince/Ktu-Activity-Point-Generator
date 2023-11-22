@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@chakra-ui/react';
 
 
+
 const Facultydashboard = ({token}) => {
 
   const navigate = useNavigate();
@@ -79,7 +80,7 @@ const handleLogout = async () => {
   return (
     
     <section className="tables">
-       <div className="faculty-info">
+       <div className="faculty-info" >
         <div className="faculty-text">
         <img src={profile} alt=""></img>
         <br></br>
