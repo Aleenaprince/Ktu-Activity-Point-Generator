@@ -68,6 +68,12 @@ return (
   );
 };
 
+//BUTTON CLICK FOR JENSINE
+
+ onChange={(e) => handleCertificateUpload(e)}
+
+
+<Input type="file" onChange={handleFileChange}  />
 
 ST DASHBOARD CSS
 
