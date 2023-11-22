@@ -4,6 +4,7 @@ import { supabase } from "../client";
 import {v4 as uuidv4} from 'uuid';
 import { Card, CardHeader, CardBody, CardFooter, SimpleGrid, Heading, Text, Button,CircularProgress,Input, CircularProgressLabe } from '@chakra-ui/react'
 import profile from '../images/profiles.png'
+import { DeleteIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 
 
 const StudentDashboard = ({token}) => {
@@ -15,7 +16,6 @@ const StudentDashboard = ({token}) => {
   dob:'',
 });  */
   const [studentDetails, setStudentDetails] = useState({
-    regno:'',
     name: '',
     className: '',
     dob: '',
@@ -202,7 +202,7 @@ fetchUserID();
         </div>
         <p>Name: {studentDetails.name}</p>
         <p>
-          Register Number: {studentDetails.regno}
+          Register Number: {studentDetails.reg}
         </p>
         
         <p>Class: {studentDetails.className}</p>
@@ -245,9 +245,9 @@ fetchUserID();
         <CircularProgress value={activityPoints.totalPoints} color='orange.400' size='180px' />
         <div className="total-points-circle">
           <br></br>
-          <p>Total Points: {activityPoints.totalPoints}</p>
+          <p>Total Points Acquired : {activityPoints.totalPoints}</p>
         </div>
-        <p>Remaining Points: {activityPoints.remainingPoints}</p>
+        <p>Remaining Points : {activityPoints.remainingPoints}</p>
     </CardBody>
     <CardFooter>
       
@@ -278,11 +278,24 @@ fetchUserID();
           </div>
         )}
     </CardBody>
-    <CardFooter>
-     <Text>Delete file</Text> 
-    <Input placeholder='Enter certificate id:' />
-    </CardFooter>
+    <Text textAlign="center" ></Text>
+    
   </Card>
+
+
+  <Card maxW="300px" >
+    <CardHeader>
+      <Heading size='md'>Delete Certificate</Heading>
+    </CardHeader>
+    <CardBody display="flex" alignItems="center" justifyContent="flex-end">
+    <Input placeholder='Enter certificate id:' />
+      <DeleteIcon  boxSize={7} marginX="2" color="orange.200" />
+    </CardBody>
+ 
+    </Card>
+
+
+
 </SimpleGrid>
       </div>
     </div>
