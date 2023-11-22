@@ -5,6 +5,7 @@ import profile from '../images/profile.png'
 import { useNavigate } from 'react-router-dom';
 
 
+
 const Facultydashboard = ({token}) => {
 
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ fetchUserID();
   return (
     
     <section className="tables">
-       <div className="faculty-info">
+       <div className="faculty-info" >
         <div className="faculty-text">
         <img src={profile} alt=""></img>
         <br></br>

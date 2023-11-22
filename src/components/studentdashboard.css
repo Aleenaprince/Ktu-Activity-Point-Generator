@@ -11,9 +11,13 @@
   flex: 1;
   height: 100vh;
   padding: 20px;
-  background-color: rgb(255, 255, 255);
-  color: #000066;
+  background-color: #fbf5f3;
+  color: black;
+  font-weight: bold;
+
  {/* border:  3px  dotted #cdc847;*/}
+   
+  
  
  
   
@@ -30,9 +34,9 @@
 
 .left h3 {
   align-items: center;
-  margin-left: 7vh;
+  margin-left: 3vh;
   font-family: "Lusitana-Bold";
-  font-size: 5vh;
+  font-size: 1vh;
   margin-bottom: 2vh;
 }
 .left p{
