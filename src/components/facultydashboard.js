@@ -11,7 +11,7 @@ const Facultydashboard = ({token}) => {
   const handleButtonClick = (rgno) => {
     
     // Navigate to another page with parameters in the URL
-    navigate(`/details/${rgno}`);
+    navigate(`/facultycertificate/${rgno}`);
   };
 
 

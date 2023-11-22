@@ -32,7 +32,7 @@ function App() {
       <Route path='/loginstudent' element={<Studentlogin setToken={setToken}/>}/>
       <Route path='/loginfaculty' element={<Facultylogin setToken={setToken}/>}/>
       <Route path="/studentcertificate" element={<Studentcertificate/>}/>
-      <Route path="/facultycertificate" element={<Facultycertificate/>}/>
+      <Route path="/facultycertificate/:rgno" element={<Facultycertificate/>}/>
       {token?<Route path='/studentdashboard' element={<Studentdashboard token={token}/>}/>:""} 
       {token?<Route path='/facultydashboard' element={<Facultydashboard token={token}/>}/>:""}
     </Routes>

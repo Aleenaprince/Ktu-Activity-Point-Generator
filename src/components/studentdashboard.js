@@ -53,23 +53,50 @@ const StudentDashboard = ({token}) => {
       // Increase activity points
       setSelectedFile(null); // Clear selected file
       setErrorMessage(''); // Clear any previous error message
+      
+      console.log('CAt',CAT);
+      console.log('SubCAt',SUBCAT);
+
+      
+      let { data: Categorydeet, error:categerror } = await supabase
+        .from('Category')
+        .select("*")
+        // Filters
+        .eq('Category', CAT)
+        .eq('SubCategory', SUBCAT);
+
+      if(Categorydeet){
+        console.log('got cID',Categorydeet.CategoryID);
+        const caid=Categorydeet.CategoryID;
+
       const { data:insertdata, error:inserterror } = await supabase
       .from('Certificate')
       .insert([
         { 
         StudentID: studentDetails.reg,
-        CategID: 'M1',
+        CategID: caid,
+        Name: certificate.name,
         Status: 'Pending', },
       ])
       .select();
+      if(insertdata){
+        console.log('success');
+      }
+      else{
+        console.log('No success');
+      }
       if (inserterror) {
         console.error('Error inserting data into Certificate table:', inserterror.message);
       }
 
-
+    }
+    else{
+      setErrorMessage('No such Category exists');
+    }
     } else {
       setErrorMessage('Cannot add more files. Activity points exceed 100.');
     }
+
   };
  
 
