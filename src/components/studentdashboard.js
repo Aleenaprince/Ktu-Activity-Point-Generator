@@ -166,6 +166,7 @@ fetchUserID();
       .insert([
         { 
         StudentID: studentDetails.reg,
+        Name: uploadedCertificate.name,
         CategID: 'M1',
         Status: 'Pending', },
       ])
