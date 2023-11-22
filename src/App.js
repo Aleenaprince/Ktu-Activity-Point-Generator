@@ -5,6 +5,8 @@ import Facultylogin from "./components/facultylogin.js"
 import Studentdashboard from "./components/studentdashboard.js"
 import { useEffect, useState } from 'react';
 import {BrowserRouter,Routes,Route}from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react'
+
 function App() {
   const[token,setToken] = useState(false)
   if(token){
@@ -18,7 +20,8 @@ function App() {
   },[])
 
   return ( 
-    
+   
+    <ChakraProvider>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Loginform/>}/>
@@ -27,6 +30,7 @@ function App() {
       {token?<Route path='/studentdashboard' element={<Studentdashboard token={token}/>}/>:""} 
     </Routes>
     </BrowserRouter>
+    </ChakraProvider>
   );
 }
 

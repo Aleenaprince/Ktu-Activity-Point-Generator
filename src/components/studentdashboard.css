@@ -1,70 +1,57 @@
 /* styles.css */
 /* styles.css */
 /* styles.css */
-html, body, #root {
-    height: 100%;
-    margin: 0;
-  }
+.dashboard-container {
+  display: flex;
+  height: 30vh;
+  margin: 0 auto;
+}
+
+.sidebar {
+  flex: 1;
+  height: 100vh;
+  padding: 20px;
+  border:  3px  dotted #cdc847;
+  background-color: #f6f3ebfe;
   
-  .dashboard-container {
-    display: flex;
-    justify-content: space-between;
-    height: 100%;
-  }
+}
+.left img {
+ 
+  border-radius: 50%;
+  align-items: center;
+  margin-left: 10vh;
+  width: 25vh;
+  height: 25vh;
+}
+
+.left h3 {
+  align-items: center;
+  margin-left: 7vh;
+  font-family: "Lusitana-Bold";
+  font-size: 5vh;
+  margin-bottom: 2vh;
+}
+.left p{
   
-  .left-div {
-    width: 30%;
-    padding: 50px;
-    border: 1px solid #0C2340;
-    background-color: #0C2340;
-    color: #fff;
-    height: 100%;
-    box-sizing: border-box; /* Include padding and border in the total height */
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 1.5em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    border-bottom: 4px solid #AE9142;
-    display: inline-block;
-    letter-spacing: 1px;
-  }
-  
-  .right-div {
-    flex: 1;
-    padding: 50px;
-    border: 1px solid #AE9142;
-    background-color: #AE9142;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    box-sizing: border-box; /* Include padding and border in the total height */
-    color: #000000;
-    font-weight: 500;
-    font-size: 1.5em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    border-bottom: 4px solid #AE9142;
-    display: inline-block;
-    letter-spacing: 1px;
-  }
-  
-  
-  .total-points-circle {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color:#0C2340; /* Keeping a contrasting color for the circle */
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .certificate-upload {
-    margin-top: 20px;
-  }
-  
+  padding: 3vh;
+}
+
+.main-content {
+  flex: 3;
+  padding: 20px;
+}
+
+
+
+.data-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.data-item {
+  flex: 1;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}

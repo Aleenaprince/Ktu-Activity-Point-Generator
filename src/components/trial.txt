@@ -1,0 +1,148 @@
+
+
+ST DASHBOARD JUS 
+
+
+return (
+    <div className="dashboard-container">
+      {/* Left Div - Student Details */}
+      <div className="left-div">
+        <h2>Student Details</h2>
+        <br />
+        <p>
+          Register Number: {studentDetails.regno}
+        </p>
+        <p>Name: {studentDetails.name}</p>
+        <p>Class: {studentDetails.className}</p>
+        <p>Semester: {studentDetails.semester}</p>
+
+      </div>
+
+      {/*<div className="chart-container">
+        <Doughnut data={data} options={options} />
+      </div> */}
+
+      {/* Right Div - Activity Points and Certificate Upload */}
+      <div className="right-div">
+        <br />
+        <h2>KTU Activity Points</h2>
+        <br />
+        <div className="total-points-circle">
+          <p></p>
+          <p>{activityPoints.totalPoints}</p>
+        </div>
+        <p>Remaining Points: {activityPoints.remainingPoints}</p>
+
+        {/* Certificate Upload */}
+        <div className="certificate-upload">
+          <h3>Upload Certificate</h3>
+          <input
+            type="file"
+            accept="application/pdf"
+            onChange={handleCertificateUpload}
+          />
+        </div>
+
+        {/* Display Uploaded Certificate */}
+        {certificate && (
+          <div className="uploaded-certificate">
+            <h3>Uploaded Certificate</h3>
+            <a
+              href={URL.createObjectURL(certificate)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {certificate.name}
+            </a>
+            <br />
+            <embed
+              src={URL.createObjectURL(certificate)}
+              type="application/pdf"
+              width="100%"
+              height="600px"
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+
+ST DASHBOARD CSS
+
+
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .dashboard-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .left-div {
+    width: 30%;
+    padding: 50px;
+    border: 1px solid #0C2340;
+    background-color: #0C2340;
+    color: #fff;
+    height: 100%;
+    box-sizing: border-box; /* Include padding and border in the total height */
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #AE9142;
+    display: inline-block;
+    letter-spacing: 1px;
+  }
+  
+  .right-div {
+    flex: 1;
+    padding: 50px;
+    border: 1px solid #AE9142;
+    background-color: #AE9142;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box; /* Include padding and border in the total height */
+    color: #000000;
+    font-weight: 500;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #AE9142;
+    display: inline-block;
+    letter-spacing: 1px;
+  }
+  
+  
+  .total-points-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color:#0C2340; /* Keeping a contrasting color for the circle */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .certificate-upload {
+    margin-top: 20px;
+  }
+  
+  
+.chart-container {
+  width: 300px;
+  height: 300px;
+  margin: 20px;
+}

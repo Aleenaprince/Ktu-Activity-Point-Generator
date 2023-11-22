@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './studentdashboard.css';
 import { supabase } from "../client";
+import { Card, CardHeader, CardBody, CardFooter, SimpleGrid, Heading, Text, Button,CircularProgress,Input, CircularProgressLabe } from '@chakra-ui/react'
+import profile from '../images/profile.png'
+
 
 const StudentDashboard = ({token}) => {
 
@@ -11,15 +14,41 @@ const StudentDashboard = ({token}) => {
   dob:'',
 });  */
   const [studentDetails, setStudentDetails] = useState({
+    regno:'',
     name: '',
     className: '',
-    dob: '01-01-2000',
+    semester:'',
   });
 
   const [activityPoints, setActivityPoints] = useState({
     totalPoints: 0,
     remainingPoints: 0,
   });
+
+  /*useEffect(() => {
+    // Sample data for the pie chart
+    const data = {
+      labels: ['Math', 'Science', 'English'],
+      datasets: [{
+        data: [70, 20, 10],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+      }]
+    };
+
+    // Options for the pie chart animation
+    const options = {
+      animation: {
+        animateRotate: true,
+        animateScale: true
+      }
+    };
+
+    // Log chart data to console
+    console.log(data);
+
+  }, []);*/
+
 
 
   //const [ID, setID] = useState(null);
@@ -45,9 +74,10 @@ const StudentDashboard = ({token}) => {
     console.log('data retreived',data);
   setStudentDetails(prevData => ({ 
     ...prevData,
+    regno:data[0].RegisterNo,
     name:data[0].Name,
     className:data[0].Class,
-    dob:data[0].DOB,
+    senester:data[0].Semester,
   }));
    setActivityPoints(prevData => ({ 
     ...prevData,
@@ -118,42 +148,81 @@ fetchUserID();
     setCertificate(uploadedCertificate);
   };
 
+
+
+
+
+
+
   return (
     <div className="dashboard-container">
-      {/* Left Div - Student Details */}
-      <div className="left-div">
-        <h2>Student Details</h2>
-        <br />
-        <p>Name: {studentDetails.name}</p>
-        <p>Class: {studentDetails.className}</p>
-        <p>DOB: {studentDetails.dob}</p>
-      </div>
-
-      {/* Right Div - Activity Points and Certificate Upload */}
-      <div className="right-div">
-        <br />
-        <h2>KTU Activity Points</h2>
-        <br />
-        <div className="total-points-circle">
-          <p></p>
-          <p>{activityPoints.totalPoints}</p>
+      <div className="sidebar left">
+        <Heading size='md'>Student Details</Heading>
+        {/* Add content or links for the left sidebar as needed */}
+        <div classname="image">
+        <img src={profile} alt=""></img>
         </div>
-        <p>Remaining Points: {activityPoints.remainingPoints}</p>
+        <p>Name: {studentDetails.name}</p>
+        <p>
+          Register Number: {studentDetails.regno}
+        </p>
+        
+        <p>Class: {studentDetails.className}</p>
+        <p>Semester: {studentDetails.semester}</p>
+      </div>
+      <div className="main-content">
+        <h1>Student Dashboard</h1>
 
-        {/* Certificate Upload */}
+      
+        <SimpleGrid spacing={8} templateColumns='repeat(auto-fill, minmax(500px, 2fr))'>
+  <Card bgGradient='linear(yellow.100 10%, orange.100 25%, yellow.100 70%)' >
+  
+  
+    <CardHeader>
+      <Heading size='md'>Upload Certificate</Heading>
+    </CardHeader>
+    <CardBody>
+    
+        {/* Add functionality for uploading certificates */}
         <div className="certificate-upload">
-          <h3>Upload Certificate</h3>
+      
           <input
             type="file"
             accept="application/pdf"
             onChange={handleCertificateUpload}
           />
         </div>
-
-        {/* Display Uploaded Certificate */}
-        {certificate && (
+      
+    </CardBody>
+    <CardFooter>
+     
+    </CardFooter>
+  </Card>
+  <Card maxW="300px" >
+    <CardHeader>
+      <Heading size='md'> KTU Activity Points</Heading>
+    </CardHeader>
+    <CardBody>
+        <br />
+        <CircularProgress value={activityPoints.totalPoints} color='orange.400' size='180px' />
+        <div className="total-points-circle">
+          <br></br>
+          <p>Total Points: {activityPoints.totalPoints}</p>
+        </div>
+        <p>Remaining Points: {activityPoints.remainingPoints}</p>
+    </CardBody>
+    <CardFooter>
+      
+    </CardFooter>
+  </Card>
+  <Card>
+    <CardHeader>
+      <Heading size='md'>Uploaded Certificate</Heading>
+    </CardHeader>
+    <CardBody>
+    {/* Display Uploaded Certificate */}
+    {certificate && (
           <div className="uploaded-certificate">
-            <h3>Uploaded Certificate</h3>
             <a
               href={URL.createObjectURL(certificate)}
               target="_blank"
@@ -162,17 +231,23 @@ fetchUserID();
               {certificate.name}
             </a>
             <br />
-            <embed
-              src={URL.createObjectURL(certificate)}
-              type="application/pdf"
-              width="100%"
-              height="600px"
-            />
+           
           </div>
         )}
+    </CardBody>
+    <CardFooter>
+     <Text>Delete file</Text> 
+    <Input placeholder='Enter certificate id:' />
+    </CardFooter>
+  </Card>
+</SimpleGrid>
       </div>
     </div>
+    
   );
+
 };
+
+  
 
 export default StudentDashboard;
