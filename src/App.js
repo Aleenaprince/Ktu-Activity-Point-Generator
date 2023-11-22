@@ -5,6 +5,7 @@ import Facultylogin from "./components/facultylogin.js"
 import Studentdashboard from "./components/studentdashboard.js"
 import Facultydashboard from "./components/facultydashboard.js"
 import Studentcertificate from "./components/studentcertificate.js"
+import Facultycertificate from "./components/facultycertificate.js"
 
 import { useEffect, useState } from 'react';
 import {BrowserRouter,Routes,Route}from 'react-router-dom';
@@ -31,6 +32,7 @@ function App() {
       <Route path='/loginstudent' element={<Studentlogin setToken={setToken}/>}/>
       <Route path='/loginfaculty' element={<Facultylogin setToken={setToken}/>}/>
       <Route path="/studentcertificate" element={<Studentcertificate/>}/>
+      <Route path="/facultycertificate" element={<Facultycertificate/>}/>
       {token?<Route path='/studentdashboard' element={<Studentdashboard token={token}/>}/>:""} 
       {token?<Route path='/facultydashboard' element={<Facultydashboard token={token}/>}/>:""}
     </Routes>
