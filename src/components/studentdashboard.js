@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import './studentdashboard.css';
 import { supabase } from "../client";
 import {v4 as uuidv4} from 'uuid';
-import { Card, CardHeader, CardBody, CardFooter,Select , Box,Alert, SimpleGrid, Heading, Text, Button,CircularProgress,Input, CircularProgressLabe } from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, CardFooter,Select , Box,Alert, SimpleGrid, Heading, Text, Button,CircularProgress,Input, CircularProgressLabe } from '@chakra-ui/react'
 import profile from '../images/profiles.png'
 import {useNavigate} from 'react-router-dom';
 import { DeleteIcon, AddIcon, WarningIcon  } from '@chakra-ui/icons'
@@ -222,7 +222,7 @@ fetchUserID();
     const handleDropdownChange = (dropdown, value) => {
       setSelectedOptions((prevOptions) => ({ ...prevOptions, [dropdown]: value }));
     };
-    const dropdownOptions1 = ['-select-','NSS','Sports','Student Proffesional society','MOOC Course','Industrial Visit','Industrial Training/ Internship'];
+    const dropdownOptions1 = ['-select-','NSS','Sports','Student Professional Society (IEEE, IET, ASME, SAE,NASA etc.) ','MOOC Course','Industrial Visit','Industrial Training/ Internship'];
     const dropdownOptions2 = ['-select-','None','College Event','Zonal Event','State/University Event','National Event','International Event','Sub Coordinator','Core Coordinator','Volunteer'];
     
     const [selectedOptions, setSelectedOptions] = useState({ dropdown1: '', dropdown2: '' });
@@ -237,17 +237,27 @@ fetchUserID();
       }
     };
 
+const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const handleToggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
 
   return (
+   
+
     <div className="dashboard-container">
+     
       <div className="sidebar left" width="50%" >
+      
        {/* <Heading size='md'>Student Details</Heading>/*}
         {/* Add content or links for the left sidebar as needed */}
         <div classname="image">
         <img src={profile} alt=""></img>
         </div>
+
+       
        
   <CText fontSize="lg" fontFamily="Arial">
     Name: {studentDetails.name}
@@ -261,7 +271,7 @@ fetchUserID();
   <CText fontSize="lg" fontFamily="Arial">
     Semester: {studentDetails.semester}
   </CText>
-  <Button colorScheme="red" onClick={handleLogout} mt="4" // margin-top
+  <Button colorScheme="orange" onClick={handleLogout} mt="18vh" // margin-top
         size="lg">
         Logout
       </Button>
@@ -270,17 +280,37 @@ fetchUserID();
        
 
       
-        <SimpleGrid spacing={8} templateColumns='repeat(auto-fill, minmax(500px, 2fr))'>
-  <Card  >
+        <SimpleGrid  spacing={10} templateColumns='repeat(auto-fill, minmax(500px, 2fr))'>
+  <Card width="700px" >
   
   
     <CardHeader>
-      <Heading size='md'>Upload Certificate</Heading>
+    <Heading  color= 'black' fontSize="4vh" marginLeft="28vh" fontFamily="Arial">Upload Certificate</Heading>
     </CardHeader>
     <CardBody>
-    
-        {/* Add functionality for uploading certificates */}
-        <div className="certificate-upload">
+    <br></br>
+    <CText  fontSize="lg" fontFamily="Arial">
+          <p>Category: </p></CText>
+          <Select  marginTop="15px" onChange={(e) => handleDropdownChange('dropdown1', e.target.value)} value={selectedOptions.dropdown1}>
+          {dropdownOptions1.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+          
+         </Select>
+
+         <br></br><CText  fontSize="lg" fontFamily="Arial">
+          <p>Sub Category: </p></CText>
+         <Select onChange={(e) => handleDropdownChange('dropdown2', e.target.value)} value={selectedOptions.dropdown2} mt={4}>
+        {dropdownOptions2.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </Select><br></br>
+      {/* Add functionality for uploading certificates */}
+      <div className="certificate-upload">
         <input
             type="file"
             accept="application/pdf"
@@ -296,54 +326,36 @@ fetchUserID();
             </Alert>
           )}
           
-          <Select  marginTop="15px" onChange={(e) => handleDropdownChange('dropdown1', e.target.value)} value={selectedOptions.dropdown1}>
-          {dropdownOptions1.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-         </Select>
-         <Select onChange={(e) => handleDropdownChange('dropdown2', e.target.value)} value={selectedOptions.dropdown2} mt={4}>
-        {dropdownOptions2.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </Select>
         
-    
-        <Button colorScheme="orange" marginTop="10PX" onClick={() =>handleUpload(selectedOptions.dropdown1,selectedOptions.dropdown2)}   isDisabled={activityPoints >= 100} >
+         <br></br>
+        <Button colorScheme="orange" marginTop="50px"  onClick={() =>handleUpload(selectedOptions.dropdown1,selectedOptions.dropdown2)}   isDisabled={activityPoints >= 100} >
           Upload Certificate
         </Button>
-        
+        <Button colorScheme="orange" marginTop="53px" marginLeft="30vh" onClick={handleBlah} >
+          View Certificates
+        </Button>
   
-       
-       
-      
-     
-     
         </div>
         
       
     </CardBody>
-    <CardFooter>
-    <button onClick={handleBlah}>
-      Go to blah
-    </button>
-    </CardFooter>
+   
   </Card>
-  <Card maxW="300px" height="600px" >
+  <Card maxW="300px" height="600px" marginLeft="180px">
     <CardHeader>
-      <Heading size='md'> KTU Activity Points</Heading>
+      <Heading  color= 'black' fontSize="3vh" marginLeft="3vh" fontFamily="Arial"> KTU Activity Points</Heading>
     </CardHeader>
     <CardBody>
-        <br />
-        <CircularProgress value={activityPoints.totalPoints} color='orange.400' size='180px' />
+        
+        <CircularProgress marginLeft="30px"  value={activityPoints.totalPoints} color='orange.400' size='200px' />
         <div className="total-points-circle">
-          <br></br>
-          <p>Total Points Acquired : {activityPoints.totalPoints}</p>
+          <br></br><br></br>
+          <CText  fontSize="lg" fontFamily="Arial">
+          <p>Total Points Acquired : </p></CText>
+          <CText  textShadow='2px 2px 4px #ee5050' color= 'orange' fontSize="50px" marginLeft="12vh" fontFamily="Arial">{activityPoints.totalPoints}</CText><br></br>
         </div>
-        <p>Remaining Points : {activityPoints.remainingPoints}</p>
+        <CText fontSize="lg" fontFamily="Arial"><p>Remaining Points : </p></CText>
+        <CText  textShadow='2px 2px 4px #ee5050' color= 'orange' fontSize="40px" marginLeft="13vh" fontFamily="Arial">{activityPoints.remainingPoints}</CText>
     </CardBody>
     <CardFooter>
       
