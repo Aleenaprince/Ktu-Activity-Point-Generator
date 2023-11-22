@@ -71,16 +71,19 @@ fetchUserID();
     <section className="tables">
        <div className="faculty-info">
         <div className="faculty-text">
-        <img src={profile} alt=""></img><br></br>
+        <img src={profile} alt=""></img>
+        <br></br>
+        <br></br>
         <p>{facultyDetails.name}</p><br></br>
         <p> {facultyDetails.dep}</p>
         <p> Class: {facultyDetails.className}</p>
+        
         </div>
         {/* Add more faculty information as needed */}
       </div>
       <div className="table__wrapper">
-        <br></br>
-        <br></br>
+        
+        
         <table className="table">
           <thead className="table__header">
             <tr>
@@ -147,6 +150,50 @@ fetchUserID();
               
               <td>
                 <button className="badge status-primary" onClick={() => handleButtonClick('MDL21CS062')}>View</button>
+              </td>
+              
+            </tr>
+            <tr>
+              
+              <td>MDL21CS011</td>
+              <td>Adarsh P Sukumaran</td>
+              <td>CS5B</td>
+           
+              <td>
+                <button className="badge status-primary" onClick={() => handleButtonClick('MDL21CS020')}>View</button>
+              </td>
+              
+            </tr>
+            <tr>
+              
+              <td>MDL21CS012</td>
+              <td>Aiswarya S</td>
+              <td>CS5B</td>
+           
+              <td>
+                <button className="badge status-primary" onClick={() => handleButtonClick('MDL21CS020')}>View</button>
+              </td>
+              
+            </tr>
+            <tr>
+              
+              <td>MDL21CS015</td>
+              <td>Alan Jacob</td>
+              <td>CS5B</td>
+           
+              <td>
+                <button className="badge status-primary" onClick={() => handleButtonClick('MDL21CS020')}>View</button>
+              </td>
+              
+            </tr>
+            <tr>
+              
+              <td>MDL21CS021</td>
+              <td>Adithya V</td>
+              <td>CS5B</td>
+           
+              <td>
+                <button className="badge status-primary" onClick={() => handleButtonClick('MDL21CS020')}>View</button>
               </td>
               
             </tr>
