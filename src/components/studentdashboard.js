@@ -4,12 +4,18 @@ import { supabase } from "../client";
 import {v4 as uuidv4} from 'uuid';
 import { Card, CardHeader, CardBody, CardFooter, SimpleGrid, Heading, Text, Button,CircularProgress,Input, CircularProgressLabe } from '@chakra-ui/react'
 import profile from '../images/profiles.png'
+import {useNavigate} from 'react-router-dom';
 import { DeleteIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 import { Text as CText, Heading as CHeading } from '@chakra-ui/react';
 
 
 const StudentDashboard = ({token}) => {
-
+  let navigate =useNavigate()
+  const handleBlah = () => {
+    
+    // Navigate to another page with parameters in the URL
+    navigate(`/studentcertificate`);
+  };
 
 /*const [userDetails, setUserDetails] = useState({
   name:'',
@@ -167,6 +173,7 @@ fetchUserID();
       .insert([
         { 
         StudentID: studentDetails.reg,
+        Name: uploadedCertificate.name,
         CategID: 'M1',
         Status: 'Pending', },
       ])
@@ -296,7 +303,10 @@ fetchUserID();
     </CardHeader>
     <CardBody display="flex" alignItems="center" justifyContent="flex-end">
     <Input placeholder='Enter certificate id:' />
-      <DeleteIcon  boxSize={7} marginX="2" color="orange.200" />
+    <button onClick={handleBlah}>
+      Go to blah
+    </button>
+      {/* <DeleteIcon  boxSize={7} marginX="2" color="orange.200" /> */}
     </CardBody>
  
     </Card>
