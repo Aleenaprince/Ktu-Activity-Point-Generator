@@ -4,6 +4,7 @@ import { supabase } from "../client";
 import profile from '../images/profile.png'
 import { useNavigate } from 'react-router-dom';
 
+
 const Facultydashboard = ({token}) => {
 
   const navigate = useNavigate();
