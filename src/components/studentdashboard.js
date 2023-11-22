@@ -6,6 +6,7 @@ import { Card, CardHeader, CardBody, CardFooter,Select , Box,Alert, SimpleGrid, 
 import profile from '../images/profiles.png'
 import {useNavigate} from 'react-router-dom';
 import { DeleteIcon, AddIcon, WarningIcon  } from '@chakra-ui/icons'
+import { Text as CText, Heading as CHeading } from '@chakra-ui/react';
 
 
 const StudentDashboard = ({token}) => {
@@ -240,22 +241,28 @@ fetchUserID();
 
   return (
     <div className="dashboard-container">
-      <div className="sidebar left">
-        <Heading size='md'>Student Details</Heading>
+      <div className="sidebar left" >
+       {/* <Heading size='md'>Student Details</Heading>/*}
         {/* Add content or links for the left sidebar as needed */}
         <div classname="image">
         <img src={profile} alt=""></img>
         </div>
-        <p>Name: {studentDetails.name}</p>
-        <p>
-          Register Number: {studentDetails.reg}
-        </p>
-        
-        <p>Class: {studentDetails.className}</p>
-        <p>Semester: {studentDetails.semester}</p>
+       
+  <CText fontSize="lg" fontFamily="Open Sans">
+    Name: {studentDetails.name}
+  </CText>
+  <CText fontSize="lg" fontFamily="Open Sans">
+    Register Number: {studentDetails.reg}
+  </CText>
+  <CText fontSize="lg" fontFamily="Open Sans">
+    Class: {studentDetails.className}
+  </CText>
+  <CText fontSize="lg" fontFamily="Open Sans">
+    Semester: {studentDetails.semester}
+  </CText>
       </div>
       <div className="main-content">
-        <h1>Student Dashboard</h1>
+       
 
       
         <SimpleGrid spacing={8} templateColumns='repeat(auto-fill, minmax(500px, 2fr))'>

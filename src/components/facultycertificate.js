@@ -101,7 +101,7 @@ fetchUserID();
 
 return (
     <section className="tables">
-       <div className="faculty-info">
+      <div className="faculty-info">
         <div className="faculty-text">
           <img src={profile} alt=""></img>
           <br></br>
@@ -110,7 +110,7 @@ return (
           <p> {studentDetails.reg}</p>
           <p> Class: {studentDetails.className}</p>
         </div>
-      </div> 
+      </div>
       <div className="table__wrapper">
         <br></br>
         <br></br>
@@ -118,21 +118,22 @@ return (
           <thead className="table__header">
             <tr>
               <td>Certificate Name</td>
-              <td>CategoryID</td>
-              {/* <td>Subcategory</td> */}
-              <td>  Status</td>
-              <td>Delete</td>
+              <td>Category</td>
+              <td>Subcategory</td> 
+              <td>Certificate</td>
+              <td>Verify</td>
             </tr>
           </thead>
           <tbody className="table__body">
             {studentData.map((student) => (
               <tr key={student.CertID}>
                 <td>{student.Name}</td>
-                <td>{student.CategID}</td>
-                <td>{student.Status}</td>
+                <td>{student.Category}</td>
+                <td>{student.SubCategory}</td>
+                <td>{student.certificate}</td>
               
                 <td><button onClick={() => handleDelete(student.CertID)}>
-      Delete
+      Verify
     </button></td>
                 
               </tr>
