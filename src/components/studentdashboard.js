@@ -45,6 +45,21 @@ const StudentDashboard = ({token}) => {
     setSelectedFile(file);
   };
   
+  // set message {update sucessfull}
+
+  // const [fileStatus, setFileStatus] = useState(null);
+
+  // const fileflag =() =>{
+  //   if (setFileStatus === true) {
+  //     console.log('File stored in the database successfully!');
+  //   }
+  // };
+  // const ButtonClick = () => {
+    //   // Execute both functions when the button is clicked
+    //   fileflag();
+    //   handleUpload(selectedOptions.dropdown1,selectedOptions.dropdown2);
+    // };
+
 
   const handleUpload = async(CAT,SUBCAT) => {
     if (activityPoints.totalPoints < 100) {
@@ -61,7 +76,9 @@ const StudentDashboard = ({token}) => {
         CategID: 'M1',
         Status: 'Pending', },
       ])
+      
       .select();
+      // setFileStatus(true);
       if (inserterror) {
         console.error('Error inserting data into Certificate table:', inserterror.message);
       }
@@ -70,35 +87,10 @@ const StudentDashboard = ({token}) => {
     } else {
       setErrorMessage('Cannot add more files. Activity points exceed 100.');
     }
+    
+    
   };
  
-
-  /*useEffect(() => {
-    // Sample data for the pie chart
-    const data = {
-      labels: ['Math', 'Science', 'English'],
-      datasets: [{
-        data: [70, 20, 10],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
-      }]
-    };
-
-    // Options for the pie chart animation
-    const options = {
-      animation: {
-        animateRotate: true,
-        animateScale: true
-      }
-    };
-
-    // Log chart data to console
-    console.log(data);
-
-  }, []);*/
-
-
-
   const [userID, setUserID] = useState('');
   const fetchUserID = async () => {
     try{
@@ -226,6 +218,7 @@ fetchUserID();
 
   
     
+    
     const handleDropdownChange = (dropdown, value) => {
       setSelectedOptions((prevOptions) => ({ ...prevOptions, [dropdown]: value }));
     };
@@ -235,8 +228,7 @@ fetchUserID();
     const [selectedOptions, setSelectedOptions] = useState({ dropdown1: '', dropdown2: '' });
     
   
-
-
+    
 
 
   return (
@@ -307,16 +299,14 @@ fetchUserID();
       </Select>
         
     
-        <Button colorScheme="orange" marginTop="10PX" onClick={()=> handleUpload(selectedOptions.dropdown1,selectedOptions.dropdown2)} isDisabled={activityPoints >= 100}>
+        <Button colorScheme="orange" marginTop="10PX" onClick={() =>handleUpload(selectedOptions.dropdown1,selectedOptions.dropdown2)}   isDisabled={activityPoints >= 100} >
           Upload Certificate
         </Button>
+        
   
-        {fileCount > 0 && (
-          <Box mt="4">
-            <Text> Certificate uploaded successfully.</Text>
-          </Box>
        
-        )}
+       
+      
      
      
         </div>
@@ -324,10 +314,12 @@ fetchUserID();
       
     </CardBody>
     <CardFooter>
-     
+    <button onClick={handleBlah}>
+      Go to blah
+    </button>
     </CardFooter>
   </Card>
-  <Card maxW="300px" >
+  <Card maxW="300px" height="600px" >
     <CardHeader>
       <Heading size='md'> KTU Activity Points</Heading>
     </CardHeader>
@@ -344,49 +336,7 @@ fetchUserID();
       
     </CardFooter>
   </Card>
-  <Card>
-    <CardHeader>
-      <Heading size='md'>Uploaded Certificate</Heading>
-    </CardHeader>
-    <CardBody>
-    {/* Display Uploaded Certificate */}
-    {certificate && (
-          <div className="uploaded-certificate">
-            <a
-              href={URL.createObjectURL(certificate)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {certificate.name}
-            </a>
-            <br />
-            {/* <embed
-              src={URL.createObjectURL(certificate)}
-              type="application/pdf"
-              width="100%"
-              height="600px"
-            /> */}
-          </div>
-        )}
-    </CardBody>
-    <Text textAlign="center" ></Text>
-    
-  </Card>
-
-
-  <Card maxW="300px" >
-    <CardHeader>
-      <Heading size='md'>Delete Certificate</Heading>
-    </CardHeader>
-    <CardBody display="flex" alignItems="center" justifyContent="flex-end">
-    <Input placeholder='Enter certificate id:' />
-    <button onClick={handleBlah}>
-      Go to blah
-    </button>
-      {/* <DeleteIcon  boxSize={7} marginX="2" color="orange.200" /> */}
-    </CardBody>
- 
-    </Card>
+  
 
 
 
