@@ -280,8 +280,8 @@ fetchUserID();
     const handleDropdownChange = (dropdown, value) => {
       setSelectedOptions((prevOptions) => ({ ...prevOptions, [dropdown]: value }));
     };
-    const dropdownOptions1 = ['-select-','NSS','Sports','Student Professional Society (IEEE, IET, ASME, SAE,NASA etc.) ','MOOC Course','Industrial Visit','Industrial Training/ Internship'];
-    const dropdownOptions2 = ['-select-','None','College Event','Zonal Event','State/University Event','National Event','International Event','Sub Coordinator','Core Coordinator','Volunteer'];
+    const dropdownOptions1 = ['-select-','NSS','Sports','MOOC Course','Industrial Visit','Industrial Training/ Internship'];
+    const dropdownOptions2 = ['-select-','None','College Event','Zonal Event','State/University Event','National Event','International Event'];
     
     const [selectedOptions, setSelectedOptions] = useState({ dropdown1: '', dropdown2: '' });
     
