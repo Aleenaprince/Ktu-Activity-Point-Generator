@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './studentdashboard.css';
 import { supabase } from "../client";
-import {v4 as uuidv4} from 'uuid';
+
 import { Card, CardHeader, CardBody, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, CardFooter,Select , Box,Alert, SimpleGrid, Heading, Text, Button,CircularProgress,Input, CircularProgressLabe } from '@chakra-ui/react'
 import profile from '../images/profiles.png'
 import {useNavigate} from 'react-router-dom';
@@ -245,7 +245,7 @@ fetchUserID();
     const { data:storagedata, error:storageerror } = await supabase
       .storage
       .from('certificates')
-      .upload(userID+"/"+uuidv4(), uploadedCertificate);
+      .upload(userID+"/"+uploadedCertificate.name, uploadedCertificate);
 
     
     // const { data:insertdata, error:inserterror } = await supabase
