@@ -81,15 +81,17 @@ const StudentDashboard = ({token}) => {
         .eq('SubCategory', SUBCAT);
 
       if(Categorydeet){
-        console.log('got cID',Categorydeet.CategoryID);
-        const caid=Categorydeet.CategoryID;
+        console.log('got cID',Categorydeet) ;
+        console.log('.id',Categorydeet[0].CategoryID);
+        
+       // const caid=Categorydeet.CategoryID;
 
       const { data:insertdata, error:inserterror } = await supabase
       .from('Certificate')
       .insert([
         { 
         StudentID: studentDetails.reg,
-        CategID: caid,
+        CategID: Categorydeet[0].CategoryID,
         Name: certificate.name,
         Status: 'Pending', },
       ])

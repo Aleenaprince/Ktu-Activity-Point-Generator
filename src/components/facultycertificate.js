@@ -53,8 +53,23 @@ let { data: Studenttot, error:Studenttoterr } = await supabase
         
 if(Studenttot){
   console.log('got current tot pts');
-  const newtot=Studenttot.Tot_Pts + Categorypoint.Point;
-  const newrem=Studenttot.Rem_Pts - Categorypoint.Point;
+  const newtot=Studenttot[0].Tot_Pts + Categorypoint[0].Point;
+  const newrem=Studenttot[0].Rem_Pts - Categorypoint[0].Point;
+  if(newtot>100){
+    newtot=100;
+    newrem=0;
+  }
+  if(newrem<100){
+    newrem=0;
+  }
+  console.log('newtot',newtot);
+  console.log('currenttot',Studenttot);
+  console.log('currenttot',Studenttot[0].Tot_Pts);
+  console.log('catpt',Categorypoint[0].Point);
+  //updTot(rgno,newtot);
+
+ // const { data:trydata, error:tryerror } = await supabase
+//.rpc('updTot', { regnum: rgno,totpts : newtot });
  const { data:pointupdatedata, error:pointupdateerror } = await supabase
       .from('Student')
       .update({ 'Tot_Pts': newtot})
@@ -82,6 +97,7 @@ else{
 }
     //console.log('Delete icon clicked!');
   }
+  else{console.log('no point detail');}
   };  
 
   const [studentData, setStudentData] = useState([]);
@@ -178,7 +194,7 @@ return (
             <tr>
               <td>Certificate Name</td>
               <td>CategoryID</td>
-              <td>Subcategory</td> 
+              <td>Status</td> 
               {/* <td>Certificate</td> */}
               <td>Verify</td>
             </tr>
