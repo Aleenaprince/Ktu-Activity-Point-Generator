@@ -287,14 +287,14 @@ return (
                 <Accordion allowToggle>
   <AccordionItem>
     <h2>
-      <AccordionButton>
+      <AccordionButton onClick={() =>handleClick(student.CategID)}   pb={4}>
         <Box as="span" flex='1' textAlign='left'>
         {student.CategID}
         </Box>
         <AccordionIcon />
       </AccordionButton>
     </h2>
-    <AccordionPanel onClick={() =>handleClick(student.CategID)}   pb={4}>
+    <AccordionPanel >
 
           Category:      {categories.cat} <br></br>
           Subcategory:   {categories.subcat}
