@@ -6,6 +6,8 @@ import Studentdashboard from "./components/studentdashboard.js"
 import Facultydashboard from "./components/facultydashboard.js"
 import Studentcertificate from "./components/studentcertificate.js"
 import Facultycertificate from "./components/facultycertificate.js"
+import { extendTheme } from '@chakra-ui/react';
+
 
 import { useEffect, useState } from 'react';
 import {BrowserRouter,Routes,Route}from 'react-router-dom';
@@ -23,9 +25,10 @@ function App() {
     }
   },[])
 
+  
   return ( 
    
-    <ChakraProvider>
+    <ChakraProvider >
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Loginform/>}/>

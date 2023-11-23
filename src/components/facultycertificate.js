@@ -3,6 +3,8 @@ import './studentcertificate.css';
 import { supabase } from "../client";
 import { useParams } from 'react-router-dom';
 import profiles from '../images/profiles.png'
+import { Accordion ,AccordionButton,AccordionItem, AccordionPanel,AccordionIcon} from '@chakra-ui/accordion';
+import{Box} from '@chakra-ui/react'
 
 
 export default function Facultycertificate()
@@ -172,7 +174,10 @@ useEffect(() => {
 fetchCertificates();
 }, []) ; 
 
-
+const handleClick =async(CategID) => {
+ 
+  
+};
 
 
 
@@ -214,7 +219,25 @@ return (
             {studentData.map((student) => (
               <tr key={student.CertID}>
                 <td>{student.Name}</td>
-                <td>{student.CategID}</td>
+                <Accordion allowToggle>
+  <AccordionItem>
+    <h2>
+      <AccordionButton>
+        <Box as="span" flex='1' textAlign='left'>
+        {student.CategID}
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h2>
+    <AccordionPanel onClick={() =>handleClick(student.CategID)}   pb={4}>
+
+          
+
+    </AccordionPanel>
+  </AccordionItem>
+
+  </Accordion>
+                
                 <td>{student.Status}</td>
                 {/* <td>{student.certificate}</td> */}
               

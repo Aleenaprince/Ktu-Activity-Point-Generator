@@ -4,6 +4,7 @@ import { supabase } from "../client";
 import profiless from '../images/profiless.png'
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
 
 
 
@@ -25,6 +26,8 @@ const Facultydashboard = ({token}) => {
   const [regno,setRegno]= useState('' );
 
   const [userID, setUserID] = useState('');
+
+  
 
   useEffect(() => {
   const fetchUserID = async () => {
@@ -95,7 +98,7 @@ const handleLogout = async () => {
         
         </div>
         {/* Add more faculty information as needed */}
-        <Button colorScheme="blue" onClick={handleLogout} mt="150" // margin-top
+        <Button colorScheme="blue" _hover={{ bg: 'lightblue' } } onClick={handleLogout} mt="150" // margin-top
         size="lg">
         Logout
       </Button>
