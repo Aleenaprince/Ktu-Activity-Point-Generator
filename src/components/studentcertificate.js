@@ -100,20 +100,25 @@ fetchUserID();
 
 
 return (
-    <section className="tables">
-       <div className="faculty-info">
+    <section className="tables" >
+       <div className="faculty-info" >
         <div className="faculty-text">
           <img src={profile} alt=""></img>
           <br></br>
           <p>{studentDetails.name}</p>
-          <br></br>
+          
           <p> {studentDetails.reg}</p>
           <p> Class: {studentDetails.className}</p>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
         </div>
       </div> 
       <div className="table__wrapper">
-        <br></br>
-        <br></br>
+      
         <table className="table">
           <thead className="table__header">
             <tr>

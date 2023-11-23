@@ -2,6 +2,7 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    
   }
   
   .flex-container {
@@ -72,7 +73,7 @@ body, html {
   }
   
   .faculty-info p {
-    margin: 10px 0;
+    margin: 30px 0;
     font-size: 16px; /* Adjusted font size */
     color: #333; /* Adjusted text color */
   }

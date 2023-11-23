@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './facultydashboard.css';
 import { supabase } from "../client";
-import profile from '../images/profile.png'
+import profiless from '../images/profiless.png'
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@chakra-ui/react';
 
@@ -82,16 +82,16 @@ const handleLogout = async () => {
     <section className="tables">
        <div className="faculty-info" >
         <div className="faculty-text">
-        <img src={profile} alt=""></img>
+        <img src={profiless} alt=""></img>
         <br></br>
         <br></br>
-        <p>{facultyDetails.name}</p><br></br>
+        <p>{facultyDetails.name}</p>
         <p> {facultyDetails.dep}</p>
         <p> Class: {facultyDetails.className}</p>
         
         </div>
         {/* Add more faculty information as needed */}
-        <Button colorScheme="red" onClick={handleLogout} mt="4" // margin-top
+        <Button colorScheme="blue" onClick={handleLogout} mt="150" // margin-top
         size="lg">
         Logout
       </Button>
@@ -154,7 +154,7 @@ const handleLogout = async () => {
               <td>CS5B</td>
              
               <td>
-                <button className="badge status-primary" onClick={() => handleButtonClick('MDL21CS049')}>View</button>
+                <button className="badge status-primary" onClick={() => handleButtonClick('MDL21CS049')}>View </button>
               </td>
               
             </tr>
