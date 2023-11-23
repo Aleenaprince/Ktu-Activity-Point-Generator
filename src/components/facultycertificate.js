@@ -58,7 +58,7 @@ if(Studenttot){
     newtot=100;
     newrem=0;
   }
-  if(newrem<100){
+  if(newrem<0){
     newrem=0;
   }
   console.log('newtot',newtot);
