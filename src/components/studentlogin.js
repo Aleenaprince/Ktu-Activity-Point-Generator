@@ -52,7 +52,7 @@ export default function Studentlogin ({setToken})
               <input type="submit" value="Sign in" name="" />
             </div>
             <div className="inputBx">
-              <p>Don't have an account? <a href="#">Sign up</a></p>
+              {/*<p>Don't have an account? <a href="#">Sign up</a></p>*/}
             </div>
           </form>
           

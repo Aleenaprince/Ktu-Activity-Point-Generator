@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './studentcertificate.css';
 import { supabase } from "../client";
 import { useParams } from 'react-router-dom';
-import profile from '../images/profiles.png'
+import profiles from '../images/profiles.png'
 
 
 export default function Facultycertificate()
@@ -162,17 +162,23 @@ return (
     <section className="tables">
       <div className="faculty-info">
         <div className="faculty-text">
-          <img src={profile} alt=""></img>
+          <img src={profiles} alt=""></img>
           <br></br>
           <p>{facultyDetails.name}</p>
-          <br></br>
+          
           <p> {facultyDetails.dep}</p>
           <p> Class: {facultyDetails.className}</p>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+
         </div>
       </div>
       <div className="table__wrapper">
-        <br></br>
-        <br></br>
+        
         <table className="table">
           <thead className="table__header">
             <tr>

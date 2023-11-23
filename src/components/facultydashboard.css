@@ -77,4 +77,6 @@ body, html {
   margin: 10px 0;
   font-size: 16px; /* Adjusted font size */
   color: #333; /* Adjusted text color */
+  font-weight: 600;
+  
 }
