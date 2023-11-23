@@ -90,7 +90,21 @@ const { data, error } = await supabase
       .eq('CertID', ctid)
       .select();
        console.log('verification success');
-       
+    
+       let { data: Certificate, error: Certificateerror } = await supabase
+.from('Certificate')
+.select("*")
+// Filters
+.eq('StudentID', rgno)
+.eq('Status', 'Pending');
+
+console.log('Certificate details fetched:',Certificate);
+
+if(Certificate){
+  setStudentData(Certificate);
+  console.log('Student data after setting',studentData);
+}
+      
     }
   }
 else{
