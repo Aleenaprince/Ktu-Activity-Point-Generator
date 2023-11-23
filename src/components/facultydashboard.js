@@ -25,6 +25,8 @@ const Facultydashboard = ({token}) => {
   const [regno,setRegno]= useState('' );
 
   const [userID, setUserID] = useState('');
+
+  useEffect(() => {
   const fetchUserID = async () => {
     try{
     const { data: { user } } = await supabase.auth.getUser();
@@ -64,6 +66,8 @@ const Facultydashboard = ({token}) => {
   
   }
 fetchUserID();
+}, []) ;  
+
 
 const handleLogout = async () => {
   try {

@@ -145,6 +145,7 @@ const StudentDashboard = ({token}) => {
 
 
   const [userID, setUserID] = useState('');
+  useEffect(() => {
   const fetchUserID = async () => {
     try{
     const { data: { user } } = await supabase.auth.getUser();
@@ -189,8 +190,12 @@ const StudentDashboard = ({token}) => {
     console.error(error.message);
   }
   
-  }
+} 
 fetchUserID();
+
+}, []) ;
+
+
 
     
 

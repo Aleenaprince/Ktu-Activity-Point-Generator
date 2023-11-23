@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import './studentcertificate.css';
 import { supabase } from "../client";
 import { useParams } from 'react-router-dom';
@@ -24,7 +24,7 @@ export default function Facultycertificate()
     dep: '',
   });
 
-  const handleDelete = async(ctid,cgid) => {
+  const HandleDelete = async(ctid,cgid) => {
     console.log('inside verify function');
     
     
@@ -53,8 +53,8 @@ let { data: Studenttot, error:Studenttoterr } = await supabase
         
 if(Studenttot){
   console.log('got current tot pts');
-  const newtot=Studenttot[0].Tot_Pts + Categorypoint[0].Point;
-  const newrem=Studenttot[0].Rem_Pts - Categorypoint[0].Point;
+  let newtot=Studenttot[0].Tot_Pts + Categorypoint[0].Point;
+  let newrem=Studenttot[0].Rem_Pts - Categorypoint[0].Point;
   if(newtot>100){
     newtot=100;
     newrem=0;
@@ -90,6 +90,7 @@ const { data, error } = await supabase
       .eq('CertID', ctid)
       .select();
        console.log('verification success');
+       
     }
   }
 else{
@@ -98,11 +99,13 @@ else{
     //console.log('Delete icon clicked!');
   }
   else{console.log('no point detail');}
+  
   };  
 
   const [studentData, setStudentData] = useState([]);
   
   const [userID, setUserID] = useState('');
+  useEffect(() => {
   const fetchUserID = async () => {
     try{
       const { data: { user } } = await supabase.auth.getUser();
@@ -135,6 +138,21 @@ else{
 
 
   
+
+
+
+
+}
+    }
+  } 
+  catch (error){
+    console.error(error.message);
+  }
+}
+fetchUserID();
+}, []) ;  
+ 
+const fetchCertificates = async () => {
 let { data: Certificate, error: Certificateerror } = await supabase
 .from('Certificate')
 .select("*")
@@ -149,23 +167,10 @@ if(Certificate){
   console.log('Student data after setting',studentData);
 }
 
-
-
 }
-    }
-  } 
-  catch (error){
-    console.error(error.message);
-  }
-}
-fetchUserID();
-  
-
-
-
-
-
-
+useEffect(() => {
+fetchCertificates();
+}, []) ; 
 
 
 
@@ -213,7 +218,7 @@ return (
                 <td>{student.Status}</td>
                 {/* <td>{student.certificate}</td> */}
               
-                <td><button onClick={() => handleDelete(student.CertID,student.CategID)}>
+                <td><button onClick={() => HandleDelete(student.CertID,student.CategID)}>
       Verify
     </button></td>
                 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import './studentcertificate.css';
 import { supabase } from "../client";
 import profile from '../images/profiles.png'
@@ -28,6 +28,8 @@ export default function Studentcertificate()
   const [studentData, setStudentData] = useState([]);
   
   const [userID, setUserID] = useState('');
+
+  useEffect(() => {
   const fetchUserID = async () => {
     try{
     const { data: { user } } = await supabase.auth.getUser();
@@ -61,6 +63,21 @@ export default function Studentcertificate()
   console.log('studentdetails set from data:',studentDetails);
 
   
+
+
+
+
+}
+    }
+  } 
+  catch (error){
+    console.error(error.message);
+  }
+}
+fetchUserID();
+}, []) ;  
+
+const fetchCertificates = async () => {
 let { data: Certificate, error: Certificateerror } = await supabase
 .from('Certificate')
 .select("*")
@@ -75,22 +92,8 @@ if(Certificate){
 }
 
 
-
 }
-    }
-  } 
-  catch (error){
-    console.error(error.message);
-  }
-}
-fetchUserID();
-  
-
-
-
-
-
-
+fetchCertificates();
 
 
 
