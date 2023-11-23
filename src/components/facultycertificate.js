@@ -221,10 +221,26 @@ if(Certificate){
 useEffect(() => {
 fetchCertificates();
 }, []) ; 
-
+const [categories, setCategories] = useState({
+  cat: '',
+  subcat: '',
+});
 const handleClick =async(CategID) => {
  
-  
+  let { data: Category, error } = await supabase
+  .from('Category')
+  .select("*")
+  // Filters
+  .eq('CategoryID', CategID);
+ if(Category){
+  console.log(Category);
+  setCategories(prevData => ({ 
+    ...prevData,
+    cat:Category[0].Category,
+    subcat:Category[0].SubCategory,
+  }));
+ }
+
 };
 
 
@@ -280,7 +296,8 @@ return (
     </h2>
     <AccordionPanel onClick={() =>handleClick(student.CategID)}   pb={4}>
 
-          
+          Category:      {categories.cat} <br></br>
+          Subcategory:   {categories.subcat}
 
     </AccordionPanel>
   </AccordionItem>
