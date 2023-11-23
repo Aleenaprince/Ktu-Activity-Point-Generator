@@ -9,15 +9,12 @@ import{Box} from '@chakra-ui/react'
 
 export default function Facultycertificate()
 {
-  // const [studentDetails, setStudentDetails] = useState({
-  //   name: '',
-  //   className: '',
-  //   dob: '',
-  //   branch: '',
-  //   reg: '',
-  //   semester:'',
-  // });
-
+  const [studentDetails, setStudentDetails] = useState({
+    id: '',
+    reg: '',
+  });
+  const [images,setImages]=useState(null);
+  const CDNURL="https://pypskdxuaaoliptuzwxc.supabase.co/storage/v1/object/public/certificates/";
   const { rgno} = useParams();
 
   const [facultyDetails, setFacultyDetails] = useState({
@@ -92,7 +89,21 @@ const { data, error } = await supabase
       .eq('CertID', ctid)
       .select();
        console.log('verification success');
-       
+    
+       let { data: Certificate, error: Certificateerror } = await supabase
+.from('Certificate')
+.select("*")
+// Filters
+.eq('StudentID', rgno)
+.eq('Status', 'Pending');
+
+console.log('Certificate details fetched:',Certificate);
+
+if(Certificate){
+  setStudentData(Certificate);
+  console.log('Student data after setting',studentData);
+}
+      
     }
   }
 else{
@@ -107,6 +118,7 @@ else{
   const [studentData, setStudentData] = useState([]);
   
   const [userID, setUserID] = useState('');
+  
   useEffect(() => {
   const fetchUserID = async () => {
     try{
@@ -117,6 +129,18 @@ else{
     console.log('reg no fetched',rgno);
     setUserID(user.id);  
     //console.log('Userid:',userID);
+
+    let { data:fetchid, error:fetchiderr } = await supabase
+    .from('Student')
+    .select("*")
+    .eq('RegNo', rgno);
+    if(fetchid){
+      console.log('uid fetched',fetchid[0].U_ID);
+      setStudentDetails(prevData => ({ 
+        ...prevData,
+        id:fetchid[0].U_ID,
+      }));
+    }
 
     let { data, error } = await supabase
     .from('Faculty')
@@ -154,6 +178,30 @@ else{
 fetchUserID();
 }, []) ;  
  
+const getCertificates = async (filename) => {
+const { data, error } = await supabase
+  .storage
+  .from('certificates')
+  .list(studentDetails.id+"/", {
+    limit: 100,
+    offset: 0,
+    sortBy: { column: 'name', order: 'asc' }
+  });
+if(data){
+  setImages(CDNURL+studentDetails.id+"/"+filename)
+  //https://pypskdxuaaoliptuzwxc.supabase.co/storage/v1/object/public/certificates/7369262e-1f44-4c4e-8d96-26705ce88a9e/1a98970e-5c8e-45b4-9187-790a3b53d8b9
+}
+  
+// const { data, error } = await supabase
+// .storage
+// .from('certificates')
+// .download(studentDetails.id+'/avatar1.png')
+}
+useEffect(() => {
+getCertificates();
+}, []) ; 
+
+
 const fetchCertificates = async () => {
 let { data: Certificate, error: Certificateerror } = await supabase
 .from('Certificate')
@@ -211,6 +259,7 @@ return (
               <td>Certificate Name</td>
               <td>CategoryID</td>
               <td>Status</td> 
+              <td>View Certificate</td> 
               {/* <td>Certificate</td> */}
               <td>Verify</td>
             </tr>
@@ -239,6 +288,9 @@ return (
   </Accordion>
                 
                 <td>{student.Status}</td>
+                <td>
+                  <a href={CDNURL+studentDetails.id+"/"+student.Name}> View Certificate </a>
+                  </td>
                 {/* <td>{student.certificate}</td> */}
               
                 <td><button onClick={() => HandleDelete(student.CertID,student.CategID)}>

@@ -25,6 +25,19 @@ const Facultydashboard = ({token}) => {
   });
   const [regno,setRegno]= useState('' );
 
+  async function getfiles(){
+    
+    const { data, error } = await supabase
+      .storage
+      .from('certificates')
+      .list("/", {
+        limit: 100,
+        offset: 0,
+        sortBy: { column: 'name', order: 'asc' },
+        search: 'jon'
+      })
+  }
+
   const [userID, setUserID] = useState('');
 
   
